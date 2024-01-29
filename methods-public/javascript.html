@@ -45,11 +45,12 @@
     ></script>
     <script>
       const result = document.querySelector('.result')
-
+      
       const fetchPeople = async () => {
         try {
           const { data } = await axios.get('/api/people')
-
+          console.log(data)
+      
           const people = data.data.map((person) => {
             return `<h5>${person.name}</h5>`
           })
@@ -66,9 +67,10 @@
       btn.addEventListener('click', async (e) => {
         e.preventDefault()
         const nameValue = input.value
-
+      
         try {
           const { data } = await axios.post('/api/people', { name: nameValue })
+          console.log(data)
           const h5 = document.createElement('h5')
           h5.textContent = data.person
           result.appendChild(h5)
@@ -78,6 +80,8 @@
         }
         input.value = ''
       })
-    </script>
+      </script>
+    
+
   </body>
 </html>
